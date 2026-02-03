@@ -97,15 +97,15 @@ export const Payments = () => {
     notes: ''
   });
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = () => {
+  const loadData = React.useCallback(() => {
     setPayments(getPayments());
     setStudents(getStudents());
     setCourses(getCourses());
-  };
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const getStudentName = (studentId) => {
     const student = students.find(s => s.id === studentId);

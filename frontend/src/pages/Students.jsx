@@ -93,14 +93,14 @@ export const Students = () => {
     status: 'active'
   });
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = () => {
+  const loadData = React.useCallback(() => {
     setStudents(getStudents());
     setCourses(getCourses());
-  };
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const getCourseName = (courseId) => {
     const course = courses.find(c => c.id === courseId);

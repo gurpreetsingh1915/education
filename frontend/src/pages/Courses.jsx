@@ -73,14 +73,14 @@ export const Courses = () => {
     description: ''
   });
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = () => {
+  const loadData = React.useCallback(() => {
     setCourses(getCourses());
     setStudents(getStudents());
-  };
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   const getEnrolledCount = (courseId) => {
     return students.filter(s => s.courseId === courseId).length;
